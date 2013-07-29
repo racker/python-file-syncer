@@ -316,7 +316,8 @@ class FileSyncer(object):
         result = {}
 
         base_path = os.path.abspath(directory)
-        for (dirpath, dirnames, filenames) in os.walk(directory, followlinks=(not self._ignore_symlinks)):
+        dirtree = os.walk(directory, followlinks=(not self._ignore_symlinks))
+        for (dirpath, dirnames, filenames) in dirtree:
             for name in filenames:
 
                 file_path = os.path.join(base_path, dirpath, name)
